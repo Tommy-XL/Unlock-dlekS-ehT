@@ -4,6 +4,11 @@
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+### Regarding This Mod
+> 
+> - Mod for Among Us that allows you to play on "dleks ehT" (mirrored Skeld)
+>
+<br>
 
 ### Work only for players with the mod installed?
 > 
