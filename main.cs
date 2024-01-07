@@ -4,29 +4,28 @@ using HarmonyLib;
 using System;
 using System.Reflection;
 
-[assembly: AssemblyFileVersion(UnloacDleks.Main.PluginVersion)]
-[assembly: AssemblyInformationalVersion(UnloacDleks.Main.PluginVersion)]
-[assembly: AssemblyVersion(UnloacDleks.Main.PluginVersion)]
-namespace UnloacDleks;
+[assembly: AssemblyFileVersion(UnlockDleks.Main.PluginVersion)]
+[assembly: AssemblyInformationalVersion(UnlockDleks.Main.PluginVersion)]
+[assembly: AssemblyVersion(UnlockDleks.Main.PluginVersion)]
+namespace UnlockDleks;
 
-[BepInPlugin(PluginGuid, "UnloacDleks", PluginVersion)]
+[BepInPlugin(PluginGuid, "UnlockDleks", PluginVersion)]
 [BepInIncompatibility("com.0xdrmoe.townofhostenhanced")]
 [BepInProcess("Among Us.exe")]
 
 public class Main : BasePlugin
 {
-    public static readonly string ModName = "Unloac Dleks";
-    public static readonly string ForkId = "Unloac Dleks";
+    public static readonly string ModName = "Unlock Dleks";
+    public static readonly string ForkId = "Unlock Dleks";
 
     public const string PluginVersion = "1.0.0";
     public const string PluginDisplayVersion = "1.0.0";
-    public const string PluginGuid = "com.tommyxl.unloacdlekSehT";
+    public const string PluginGuid = "com.tommyxl.unlockdleksehT";
 
     public static Main Instance;
 
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
     public static Version version = Version.Parse(PluginVersion);
-    public static BepInEx.Logging.ManualLogSource Logger;
 
     public override void Load()
     {
