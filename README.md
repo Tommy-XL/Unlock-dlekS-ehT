@@ -4,15 +4,13 @@
 ---
 <br>
 
-### **Work for players with the mod installed?**
+### **Work only for players with the mod installed?**
 > 
 > - No, works even for host only.
 >
-
 <br>
-
-**Credits:**
+### **Credits:**
 ### :star: [TOH-Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced/) 
 > 
-> - The main code base is taken from TOH-Enhanced
+> - The main code base from TOH-Enhanced
 >
