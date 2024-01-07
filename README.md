@@ -12,7 +12,7 @@
 
 ### Credits:
 
-## [TOH-Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced/) 
+## star: [TOH-Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced/) 
 > 
 > - The main code base from TOH-Enhanced
 >
