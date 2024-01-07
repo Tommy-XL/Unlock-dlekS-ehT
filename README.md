@@ -9,8 +9,10 @@
 > - No, works even for host only.
 >
 <br>
-### **Credits:**
-### :star: [TOH-Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced/) 
+
+### Credits:
+
+## [TOH-Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced/) 
 > 
 > - The main code base from TOH-Enhanced
 >
