@@ -12,9 +12,8 @@ class ModManagerLateUpdatePatch
     }
     public static void Postfix(ModManager __instance)
     {
-        var offset_y = HudManager.InstanceExists ? 1.6f : 1.4f;
         __instance.ModStamp.transform.position = AspectPosition.ComputeWorldPosition(
             __instance.localCamera, AspectPosition.EdgeAlignments.RightTop,
-            new Vector3(0.4f, offset_y, __instance.localCamera.nearClipPlane + 0.1f));
+            new Vector3(0.4f, 1.6f, __instance.localCamera.nearClipPlane + 0.1f));
     }
 }
