@@ -1,3 +1,4 @@
+using AmongUs.GameOptions;
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
@@ -22,10 +23,13 @@ public class Main : BasePlugin
     public const string PluginDisplayVersion = "1.0.0";
     public const string PluginGuid = "com.tommyxl.unlockdleksehT";
 
-    public static Main Instance;
+    public Main Instance;
 
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
-    public static Version version = Version.Parse(PluginVersion);
+    public Version version = Version.Parse(PluginVersion);
+
+    public static NormalGameOptionsV08 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
+    public static HideNSeekGameOptionsV08 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
 
     public override void Load()
     {

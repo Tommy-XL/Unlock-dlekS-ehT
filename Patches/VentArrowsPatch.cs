@@ -8,21 +8,24 @@ public static class VentSetButtonsPatch
 {
     public static bool ShowButtons = false;
     // Fix arrows buttons in vent on Dleks map and "Index was outside the bounds of the array" errors
-    private static bool Prefix(Vent __instance, [HarmonyArgument(0)] ref bool enabled)
+    private static void Prefix(Vent __instance, [HarmonyArgument(0)] ref bool enabled)
     {
+        if (__instance == null) return;
+
+        enabled = true;
+
         // if map is Dleks
-        if (GameStates.DleksIsActive && GameStates.introDestroyed)
+        if (GameStates.DleksIsActive && GameStates.IntroDestroyed)
         {
             enabled = false;
             if (GameStates.IsMeeting)
                 ShowButtons = false;
         }
-        return true;
     }
     public static void Postfix(Vent __instance, [HarmonyArgument(0)] bool enabled)
     {
-        if (!GameStates.DleksIsActive) return;
-        if (enabled || !GameStates.introDestroyed) return;
+        if (__instance == null || !GameStates.DleksIsActive) return;
+        if (enabled || !GameStates.IntroDestroyed) return;
 
         var setActive = ShowButtons || !PlayerControl.LocalPlayer.inVent && !GameStates.IsMeeting;
         switch (__instance.Id)
