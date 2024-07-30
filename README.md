@@ -21,7 +21,7 @@
 |                                       Among Us Version                                        |    Mod Version    |                                    Links                                      |
 |:---------------------------------------------------------------------------------------------:|:-----------------:|:-----------------------------------------------------------------------------:|
 |                                          `v2024.6.18`                                         |      `1.1.0`      |							     Working on it                                  |
-|                                   `v2024.3.5`<br>`v2022.3.29`                                 |      `1.0.0`      | [Download](https://github.com/Tommy-XL/Unlock-dlekS-ehT/releases/tag/v1.0.0)  |
+|                                   `v2024.3.5`<br>`v2022.6.4`                                  |      `1.0.0`      | [Download](https://github.com/Tommy-XL/Unlock-dlekS-ehT/releases/tag/v1.0.0)  |
 
 ## Credits:
 
