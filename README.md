@@ -12,7 +12,7 @@
 
 ### Work only for players with the mod installed?
 > 
-> - No, works even for host only.
+> - No, even works for host only.
 >
 <br>
 
@@ -25,7 +25,7 @@
 
 ## Credits:
 
-# :star: [TOH-Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced/) 
+### :star: [TOH-Enhanced](https://github.com/0xDrMoe/TownofHost-Enhanced/) 
 > 
 > - The main code base from TOH-Enhanced
 >
