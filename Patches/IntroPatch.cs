@@ -9,7 +9,7 @@ class IntroCutsceneDestroyPatch
     public static void Postfix()
     {
         if (!GameStates.IsInGame) return;
-        GameStates.introDestroyed = true;
+        GameStates.IntroDestroyed = true;
     }
 }
 
@@ -27,7 +27,7 @@ class OnGameStartedPatch
 {
     public static void Postfix()
     {
-        GameStates.introDestroyed = false;
+        GameStates.IntroDestroyed = false;
     }
 }
 
