@@ -12,8 +12,6 @@ public static class VentSetButtonsPatch
     {
         if (__instance == null) return;
 
-        enabled = true;
-
         // if map is Dleks
         if (GameStates.DleksIsActive && GameStates.IntroDestroyed)
         {
