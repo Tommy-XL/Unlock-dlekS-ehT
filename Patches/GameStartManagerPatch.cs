@@ -6,10 +6,10 @@ namespace UnlockDleks.Patches;
 
 
 [HarmonyPatch(typeof(GameStartManager))]
-public static class AllMapIconsPatch
+public static class GameStartManagerPatch
 {
-    [HarmonyPatch(nameof(GameStartManager.Update)), HarmonyPostfix]
-    public static void Postfix_Update(GameStartManager __instance)
+    [HarmonyPatch(nameof(GameStartManager.Update)), HarmonyPrefix]
+    public static void Prefix_Update(GameStartManager __instance)
     {
         if (__instance == null) return;
         __instance.MinPlayers = 1;
