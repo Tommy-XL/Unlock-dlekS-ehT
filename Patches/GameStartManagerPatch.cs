@@ -8,6 +8,12 @@ namespace UnlockDleks.Patches;
 [HarmonyPatch(typeof(GameStartManager))]
 public static class AllMapIconsPatch
 {
+    [HarmonyPatch(nameof(GameStartManager.Update)), HarmonyPostfix]
+    public static void Postfix_Update(GameStartManager __instance)
+    {
+        if (__instance == null) return;
+        __instance.MinPlayers = 1;
+    }
     // Vanilla players getting error when trying get dleks map icon
     [HarmonyPatch(nameof(GameStartManager.Start)), HarmonyPostfix]
     public static void Postfix_AllMapIcons(GameStartManager __instance)
@@ -31,5 +37,19 @@ public static class AllMapIconsPatch
         DleksIncon.NameImage = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
 
         __instance.AllMapIcons.Add(DleksIncon);
+    }
+    [HarmonyPatch(nameof(GameStartManager.BeginGame)), HarmonyPostfix]
+    public static void Postfix_BeginGame(GameStartManager __instance)
+    {
+        if (__instance == null) return;
+
+        if (GameOptionsMapPickerPatch.SetDleks)
+        {
+            if (GameStates.IsNormalGame)
+                Main.NormalOptions.MapId = 3;
+
+            else if (GameStates.IsHideNSeek)
+                Main.HideNSeekOptions.MapId = 3;
+        }
     }
 }
