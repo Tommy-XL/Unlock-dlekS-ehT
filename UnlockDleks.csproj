@@ -4,7 +4,7 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
 		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-		<Description>Unloac Dleks ehT</Description>
+		<Description>Unlock Dleks ehT</Description>
 		<Authors>TommyXL</Authors>
 		<langVersion>latest</langVersion>
 		<!--<AmongUs>C:\Program Files (x86)\Steam\steamapps\common\Among Us</AmongUs>-->
@@ -13,11 +13,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AmongUs.GameLibs.Steam" Version="2023.11.28" PrivateAssets="all" />
+		<PackageReference Include="AmongUs.GameLibs.Steam" Version="2024.9.4" PrivateAssets="all" />
 		<PackageReference Include="BepInEx.IL2CPP.MSBuild" Version="2.1.0-rc.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.674" Private="false" ExcludeAssets="runtime;native" />
+		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.692" Private="false" ExcludeAssets="runtime;native" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include=".\Resources\**" />
 	</ItemGroup>
 </Project>
