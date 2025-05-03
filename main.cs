@@ -19,8 +19,8 @@ public class Main : BasePlugin
     public static readonly string ModName = "Unlock Dleks";
     public static readonly string ForkId = "Unlock Dleks";
 
-    public const string PluginVersion = "1.1.0";
-    public const string PluginDisplayVersion = "1.1.0";
+    public const string PluginVersion = "1.2.0";
+    public const string PluginDisplayVersion = "1.2.0";
     public const string PluginGuid = "com.tommyxl.unlockdleksehT";
 
     public Main Instance;
@@ -28,8 +28,8 @@ public class Main : BasePlugin
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
     public Version version = Version.Parse(PluginVersion);
 
-    public static NormalGameOptionsV08 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
-    public static HideNSeekGameOptionsV08 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
+    public static NormalGameOptionsV09 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
+    public static HideNSeekGameOptionsV09 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
 
     public override void Load()
     {

@@ -43,7 +43,7 @@ public static class GameStartManagerPatch
     {
         if (__instance == null) return;
 
-        if (GameOptionsMapPickerPatch.SetDleks)
+        if (CreateOptionsPickerPatch.SetDleks)
         {
             if (GameStates.IsNormalGame)
                 Main.NormalOptions.MapId = 3;
