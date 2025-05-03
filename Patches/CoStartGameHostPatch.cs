@@ -4,10 +4,10 @@ using UnityEngine;
 namespace UnlockDleks.Patches;
 
 // Thanks Galster (https://github.com/Galster-dev)
-[HarmonyPatch(typeof(AmongUsClient._CoStartGameHost_d__32), nameof(AmongUsClient._CoStartGameHost_d__32.MoveNext))]
+[HarmonyPatch(typeof(AmongUsClient._CoStartGameHost_d__37), nameof(AmongUsClient._CoStartGameHost_d__37.MoveNext))]
 class CoStartGameHostPatch
 {
-    private static bool Prefix(AmongUsClient._CoStartGameHost_d__32 __instance, ref bool __result)
+    private static bool Prefix(AmongUsClient._CoStartGameHost_d__37 __instance, ref bool __result)
     {
         if (__instance.__1__state != 0)
         {

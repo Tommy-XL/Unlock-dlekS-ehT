@@ -4,8 +4,6 @@ namespace UnlockDleks.Modules;
 
 public static class GameStates
 {
-    public static bool IsInGame = false;
-    public static bool IntroDestroyed = false;
     public static bool IsNormalGame => GameOptionsManager.Instance.CurrentGameOptions.GameMode is GameModes.Normal or GameModes.NormalFools;
     public static bool IsHideNSeek => GameOptionsManager.Instance.CurrentGameOptions.GameMode is GameModes.HideNSeek or GameModes.SeekFools;
     public static bool IsMeeting => AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Joined && MeetingHud.Instance;
