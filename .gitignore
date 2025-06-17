@@ -4,6 +4,7 @@
 /.editorconfig
 /.vscode
 /.idea
+/out
 
 FodyWeavers.xsd
 UnlockDleks.sln
