@@ -52,9 +52,9 @@ class CreateOptionsPickerPatch
                     __instance.selectedMapId = 3;
 
                     if (GameStates.IsNormalGame)
-                        Main.NormalOptions.MapId = 0;
+                        GameOptionsManager.Instance.currentNormalGameOptions.MapId = 0;
                     else if (GameStates.IsHideNSeek)
-                        Main.HideNSeekOptions.MapId = 0;
+                        GameOptionsManager.Instance.currentHideNSeekGameOptions.MapId = 0;
 
                     //__instance.MapImage.transform.localScale = new Vector3(-1f, 1f, 1f);
                     //__instance.MapName.transform.localScale = new Vector3(-1f, 1f, 1f);
