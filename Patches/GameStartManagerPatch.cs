@@ -20,14 +20,17 @@ public static class GameStartManagerPatch
     {
         if (__instance == null) return;
 
-        if (GameStates.IsNormalGame && Main.NormalOptions.MapId == 3)
+        var normalOptions = GameOptionsManager.Instance.currentNormalGameOptions;
+        var hideNSeekOptions = GameOptionsManager.Instance.currentHideNSeekGameOptions;
+
+        if (GameStates.IsNormalGame && normalOptions.MapId == 3)
         {
-            Main.NormalOptions.MapId = 0;
+            normalOptions.MapId = 0;
             __instance.UpdateMapImage(MapNames.Skeld);
         }
-        else if (GameStates.IsHideNSeek && Main.HideNSeekOptions.MapId == 3)
+        else if (GameStates.IsHideNSeek && hideNSeekOptions.MapId == 3)
         {
-            Main.HideNSeekOptions.MapId = 0;
+            hideNSeekOptions.MapId = 0;
             __instance.UpdateMapImage(MapNames.Skeld);
         }
 
@@ -46,10 +49,10 @@ public static class GameStartManagerPatch
         if (CreateOptionsPickerPatch.SetDleks)
         {
             if (GameStates.IsNormalGame)
-                Main.NormalOptions.MapId = 3;
+                GameOptionsManager.Instance.currentNormalGameOptions.MapId = 3;
 
             else if (GameStates.IsHideNSeek)
-                Main.HideNSeekOptions.MapId = 3;
+                GameOptionsManager.Instance.currentHideNSeekGameOptions.MapId = 3;
         }
     }
 }
