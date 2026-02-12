@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace UnlockDleks.Patches;
 
-// From: https://github.com/Gurge44/Submerged-For-EHR/blob/8edcbb8e9738feb89447160018dc2909fd037f64/Submerged/UI/Patches/MapSelectButtonPatches.cs#L27
+// From: https://github.com/SubmergedAmongUs/Submerged/blob/19afc6c8f4d48ce08360a711448e09f28f9a57fa/Submerged/UI/Patches/MapSelectButtonPatches.cs#L28
 
 [HarmonyPatch]
 public static class FreeplayPopoverPatch
