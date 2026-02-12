@@ -20,6 +20,7 @@
 
 |                                       Among Us Version                                        |    Mod Version    |                                    Links                                      |
 |:---------------------------------------------------------------------------------------------:|:-----------------:|:-----------------------------------------------------------------------------:|
+|                            `v2025.9.9 (17.0.0)`<br>`v2025.10.14 (17.0.1)`                     |      `2.0.0`      | [Download](https://github.com/Tommy-XL/Unlock-dlekS-ehT/releases/tag/v2.0.0)  |
 |                            `v2025.9.9 (17.0.0)`<br>`v2025.10.14 (17.0.1)`                     |      `1.4.0`      | [Download](https://github.com/Tommy-XL/Unlock-dlekS-ehT/releases/tag/v1.4.0)  |
 |                                       `v2025.4.15 (16.1.x)`                                   |      `1.3.0`      | [Download](https://github.com/Tommy-XL/Unlock-dlekS-ehT/releases/tag/v1.3.0)  |
 |                                       `v2025.3.25 (16.0.x)`                                   |      `1.2.0`      | [Download](https://github.com/Tommy-XL/Unlock-dlekS-ehT/releases/tag/v1.2.0)  |
@@ -32,5 +33,6 @@
 > 
 > - The main code base from TOH-Enhanced
 >
+
 
 
