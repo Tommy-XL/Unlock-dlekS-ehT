@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using System;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -22,15 +21,15 @@ class CreateOptionsPickerPatch
         {
             if (SceneManager.GetActiveScene().name == "FindAGame") return;
 
-            int DleksPos = 3;
+            const int dleksPos = 3;
 
             MapSelectButton[] AllMapButton = __instance.transform.GetComponentsInChildren<MapSelectButton>();
 
             if (AllMapButton != null)
             {
-                GameObject dlekS_ehT = UnityEngine.Object.Instantiate(AllMapButton[0].gameObject, __instance.transform);
-                dlekS_ehT.transform.position = AllMapButton[DleksPos].transform.position;
-                dlekS_ehT.transform.SetSiblingIndex(DleksPos + 2);
+                GameObject dlekS_ehT = Object.Instantiate(AllMapButton[0].gameObject, __instance.transform);
+                dlekS_ehT.transform.position = AllMapButton[dleksPos].transform.position;
+                dlekS_ehT.transform.SetSiblingIndex(dleksPos + 2);
                 MapSelectButton dlekS_ehT_MapButton = dlekS_ehT.GetComponent<MapSelectButton>();
                 DleksButton = dlekS_ehT_MapButton;
                 foreach (var icon in dlekS_ehT_MapButton.MapIcon)
@@ -44,9 +43,8 @@ class CreateOptionsPickerPatch
                     __instance.SelectMap(__instance.AllMapIcons[0]);
 
                     if (__instance.selectedButton)
-                    {
                         __instance.selectedButton.Button.SelectButton(false);
-                    }
+
                     __instance.selectedButton = dlekS_ehT_MapButton;
                     __instance.selectedButton.Button.SelectButton(true);
                     __instance.selectedMapId = 3;
@@ -59,24 +57,20 @@ class CreateOptionsPickerPatch
                     //__instance.MapImage.transform.localScale = new Vector3(-1f, 1f, 1f);
                     //__instance.MapName.transform.localScale = new Vector3(-1f, 1f, 1f);
 
-
                     __instance.MapImage.sprite = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner.png", 100f);
                     __instance.MapName.sprite = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
                 }));
 
-                for (int i = DleksPos; i < AllMapButton.Length; i++)
-                {
+                for (int i = dleksPos; i < AllMapButton.Length; i++)
                     AllMapButton[i].transform.localPosition += new Vector3(0.625f, 0f, 0f);
-                }
 
                 if (DleksButton != null)
                 {
                     if (SetDleks)
                     {
                         if (__instance.selectedButton)
-                        {
                             __instance.selectedButton.Button.SelectButton(false);
-                        }
+
                         DleksButton.Button.SelectButton(true);
                         __instance.selectedButton = DleksButton;
                         __instance.selectedMapId = 3;
@@ -88,9 +82,7 @@ class CreateOptionsPickerPatch
                         __instance.MapName.sprite = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
                     }
                     else
-                    {
                         DleksButton.Button.SelectButton(false);
-                    }
                 }
             }
         }
@@ -101,20 +93,10 @@ class CreateOptionsPickerPatch
         public static bool Prefix_FixedUpdate(GameOptionsMapPicker __instance)
         {
             if (__instance == null) return true;
-
             if (__instance.MapName == null) return false;
 
-            if (DleksButton != null)
-            {
-                if (__instance.selectedMapId == 3)
-                {
-                    SetDleks = true;
-                }
-                else
-                {
-                    SetDleks = false;
-                }
-            }
+            if (DleksButton != null) 
+                SetDleks = __instance.selectedMapId == 3;
 
             if (__instance.selectedMapId == 3)
             {
@@ -169,7 +151,7 @@ class CreateOptionsPickerPatch
             dleksMenuButtonCopy.position = new Vector3(dleksMenuButtonCopy.position.x, 2f * dleksMenuButtonCopy.position.y - polusMenuButton.transform.position.y, dleksMenuButtonCopy.position.z);
             fungleMenuButton.position = new Vector3(fungleMenuButton.position.x, dleksMenuButtonCopy.transform.position.y - 0.6f, fungleMenuButton.position.z);
 
-            __instance.MapMenu.MapButtons = HarmonyLib.CollectionExtensions.AddItem(__instance.MapMenu.MapButtons, dleksIconInMenuCopy).ToArray();
+            __instance.MapMenu.MapButtons = CollectionExtensions.AddItem(__instance.MapMenu.MapButtons, dleksIconInMenuCopy).ToArray();
 
             float xPos = -1f;
             for (int index = 0; index < 6; ++index)
