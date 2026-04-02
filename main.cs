@@ -14,6 +14,7 @@ namespace UnlockDleks;
 
 [BepInPlugin(PluginGuid, "UnlockDleks", PluginVersion)]
 [BepInIncompatibility("com.0xdrmoe.townofhostenhanced")]
+[BepInIncompatibility("com.gurge44.endlesshostroles")]
 [BepInProcess("Among Us.exe")]
 
 public class Main : BasePlugin
