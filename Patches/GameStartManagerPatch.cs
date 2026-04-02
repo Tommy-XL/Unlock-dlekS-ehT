@@ -23,21 +23,24 @@ public static class GameStartManagerPatch
         var normalOptions = GameOptionsManager.Instance.currentNormalGameOptions;
         var hideNSeekOptions = GameOptionsManager.Instance.currentHideNSeekGameOptions;
 
-        if (GameStates.IsNormalGame && normalOptions.MapId == 3)
+        LateTask.New(() =>
         {
-            normalOptions.MapId = 0;
-            __instance.UpdateMapImage(MapNames.Skeld);
-        }
-        else if (GameStates.IsHideNSeek && hideNSeekOptions.MapId == 3)
-        {
-            hideNSeekOptions.MapId = 0;
-            __instance.UpdateMapImage(MapNames.Skeld);
-        }
+            if (GameStates.IsNormalGame && normalOptions.MapId == 3)
+            {
+                normalOptions.MapId = 0;
+                __instance.UpdateMapImage(MapNames.Skeld);
+            }
+            else if (GameStates.IsHideNSeek && hideNSeekOptions.MapId == 3)
+            {
+                hideNSeekOptions.MapId = 0;
+                __instance.UpdateMapImage(MapNames.Skeld);
+            }
+        }, AmongUsClient.Instance.AmHost ? 1f : 4f, "Set Skeld Icon For Dleks Map");
 
         MapIconByName DleksIncon = Object.Instantiate(__instance, __instance.gameObject.transform).AllMapIcons[0];
         DleksIncon.Name = MapNames.Dleks;
-        DleksIncon.MapImage = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner.png", 100f);
-        DleksIncon.NameImage = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
+        DleksIncon.MapImage = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner.png", 100f);
+        DleksIncon.NameImage = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
 
         __instance.AllMapIcons.Add(DleksIncon);
     }

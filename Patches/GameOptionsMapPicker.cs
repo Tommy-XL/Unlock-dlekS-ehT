@@ -14,9 +14,15 @@ class CreateOptionsPickerPatch
     [HarmonyPatch]
     public static class GameOptionsMapPickerPatch
     {
+        [HarmonyPatch(typeof(GameOptionsMapPicker), nameof(GameOptionsMapPicker.SelectMap), typeof(int))]
+        [HarmonyPrefix]
+        public static void Prefix_SelectMap([HarmonyArgument(0)] ref int mapId)
+        {
+            if (mapId == 3)
+                mapId = 0;
+        }
         [HarmonyPatch(typeof(GameOptionsMapPicker), nameof(GameOptionsMapPicker.SetupMapButtons))]
         [HarmonyPostfix]
-        [Obfuscation(Exclude = true)]
         public static void Postfix_Initialize(CreateGameMapPicker __instance)
         {
             if (SceneManager.GetActiveScene().name == "FindAGame") return;
@@ -38,7 +44,7 @@ class CreateOptionsPickerPatch
                     icon.flipX = true;
                 }
                 dlekS_ehT_MapButton.Button.OnClick.RemoveAllListeners();
-                dlekS_ehT_MapButton.Button.OnClick.AddListener((UnityEngine.Events.UnityAction)(() =>
+                dlekS_ehT_MapButton.Button.OnClick.AddListener((System.Action)(() =>
                 {
                     __instance.SelectMap(__instance.AllMapIcons[0]);
 
@@ -57,8 +63,8 @@ class CreateOptionsPickerPatch
                     //__instance.MapImage.transform.localScale = new Vector3(-1f, 1f, 1f);
                     //__instance.MapName.transform.localScale = new Vector3(-1f, 1f, 1f);
 
-                    __instance.MapImage.sprite = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner.png", 100f);
-                    __instance.MapName.sprite = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
+                    __instance.MapImage.sprite = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner.png", 100f);
+                    __instance.MapName.sprite = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
                 }));
 
                 for (int i = dleksPos; i < AllMapButton.Length; i++)
@@ -78,8 +84,8 @@ class CreateOptionsPickerPatch
                         //__instance.MapImage.transform.localScale = new Vector3(-1f, 1f, 1f);
                         //__instance.MapName.transform.localScale = new Vector3(-1f, 1f, 1f);
 
-                        __instance.MapImage.sprite = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner.png", 100f);
-                        __instance.MapName.sprite = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
+                        __instance.MapImage.sprite = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner.png", 100f);
+                        __instance.MapName.sprite = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
                     }
                     else
                         DleksButton.Button.SelectButton(false);
@@ -95,7 +101,7 @@ class CreateOptionsPickerPatch
             if (__instance == null) return true;
             if (__instance.MapName == null) return false;
 
-            if (DleksButton != null) 
+            if (DleksButton != null)
                 SetDleks = __instance.selectedMapId == 3;
 
             if (__instance.selectedMapId == 3)
@@ -123,13 +129,13 @@ class CreateOptionsPickerPatch
             MapFilterButton airhipIconInMenu = __instance.MapMenu.MapButtons[3];
             MapFilterButton fungleIconInMenu = __instance.MapMenu.MapButtons[4];
             MapFilterButton skeldIconInMenu = __instance.MapMenu.MapButtons[0];
-            MapFilterButton dleksIconInMenuCopy = UnityEngine.Object.Instantiate(airhipIconInMenu, airhipIconInMenu.transform.parent);
+            MapFilterButton dleksIconInMenuCopy = Object.Instantiate(airhipIconInMenu, airhipIconInMenu.transform.parent);
 
             Transform skeldMenuButton = mapPickerMenu.transform.Find("Skeld");
             Transform polusMenuButton = mapPickerMenu.transform.Find("Polus");
             Transform airshipMenuButton = mapPickerMenu.transform.Find("Airship");
             Transform fungleMenuButton = mapPickerMenu.transform.Find("Fungle");
-            Transform dleksMenuButtonCopy = UnityEngine.Object.Instantiate(airshipMenuButton, airshipMenuButton.parent);
+            Transform dleksMenuButtonCopy = Object.Instantiate(airshipMenuButton, airshipMenuButton.parent);
 
             // Set mapid for Dleks button
             PassiveButton dleksButton = dleksMenuButtonCopy.GetComponent<PassiveButton>();
