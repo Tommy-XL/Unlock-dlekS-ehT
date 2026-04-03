@@ -1,9 +1,8 @@
 ﻿using HarmonyLib;
-using UnityEngine;
+using System.Linq;
 using UnlockDleks.Modules;
 
 namespace UnlockDleks.Patches;
-
 
 [HarmonyPatch(typeof(GameStartManager))]
 public static class GameStartManagerPatch
@@ -14,45 +13,59 @@ public static class GameStartManagerPatch
         if (__instance == null) return;
         __instance.MinPlayers = 1;
     }
-    // Vanilla players getting error when trying get dleks map icon
-    [HarmonyPatch(nameof(GameStartManager.Start)), HarmonyPostfix]
-    public static void Postfix_AllMapIcons(GameStartManager __instance)
+    [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
+    [HarmonyPriority(Priority.First)]
+    [HarmonyPrefix]
+    public static void GameStartManagerStart_Prefix(GameStartManager __instance)
+    {
+        if (__instance.AllMapIcons.ToArray().Any(x => x.Name == MapNames.Dleks)) return;
+
+        __instance.AllMapIcons.Insert((int)MapNames.Dleks, new MapIconByName
+        {
+            Name = MapNames.Dleks,
+            MapIcon = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 160f),
+        });
+    }
+    [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
+    [HarmonyPostfix]
+    public static void GameStartManagerStart_Postfix(GameStartManager __instance)
     {
         if (__instance == null) return;
 
-        var normalOptions = GameOptionsManager.Instance.currentNormalGameOptions;
-        var hideNSeekOptions = GameOptionsManager.Instance.currentHideNSeekGameOptions;
-
-        if (GameStates.IsNormalGame && normalOptions.MapId == 3)
+        LateTask.New(() =>
         {
-            normalOptions.MapId = 0;
-            __instance.UpdateMapImage(MapNames.Skeld);
-        }
-        else if (GameStates.IsHideNSeek && hideNSeekOptions.MapId == 3)
-        {
-            hideNSeekOptions.MapId = 0;
-            __instance.UpdateMapImage(MapNames.Skeld);
-        }
+            var normalOptions = GameOptionsManager.Instance.currentNormalGameOptions;
+            var hideNSeekOptions = GameOptionsManager.Instance.currentHideNSeekGameOptions;
 
-        MapIconByName DleksIncon = Object.Instantiate(__instance, __instance.gameObject.transform).AllMapIcons[0];
-        DleksIncon.Name = MapNames.Dleks;
-        DleksIncon.MapImage = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner.png", 100f);
-        DleksIncon.NameImage = Utils.LoadSprite($"UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 100f);
+            if (GameStates.IsNormalGame && normalOptions?.MapId == 3)
+                normalOptions.MapId = 0;
 
-        __instance.AllMapIcons.Add(DleksIncon);
+            else if (GameStates.IsHideNSeek && hideNSeekOptions?.MapId == 3)
+                hideNSeekOptions.MapId = 0;
+
+        }, AmongUsClient.Instance.AmHost ? 1f : 4f, "Set Skeld Icon For Dleks Map");
     }
+    [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.UpdateMapImage))]
+    [HarmonyPrefix]
+    public static bool Prefix_UpdateMapImage(GameStartManager __instance)
+    {
+        if (GameOptionsMapPickerPatch.SetDleks)
+        {
+            __instance.MapImage.sprite = Utils.LoadSprite("UnlockDleks.Resources.Images.DleksBanner-Wordart.png", 160f);
+            return false;
+        }
+        return true;
+    }
+
     [HarmonyPatch(nameof(GameStartManager.BeginGame)), HarmonyPostfix]
     public static void Postfix_BeginGame(GameStartManager __instance)
     {
-        if (__instance == null) return;
+        if (__instance == null || !GameOptionsMapPickerPatch.SetDleks) return;
 
-        if (CreateOptionsPickerPatch.SetDleks)
-        {
-            if (GameStates.IsNormalGame)
-                GameOptionsManager.Instance.currentNormalGameOptions.MapId = 3;
+        if (GameStates.IsNormalGame)
+            GameOptionsManager.Instance.currentNormalGameOptions.MapId = 3;
 
-            else if (GameStates.IsHideNSeek)
-                GameOptionsManager.Instance.currentHideNSeekGameOptions.MapId = 3;
-        }
+        else if (GameStates.IsHideNSeek)
+            GameOptionsManager.Instance.currentHideNSeekGameOptions.MapId = 3;
     }
 }
