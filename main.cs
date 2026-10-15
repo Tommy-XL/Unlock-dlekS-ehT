@@ -23,8 +23,8 @@ public class Main : BasePlugin
     public static readonly string ModName = "Unlock Dleks";
     public static readonly string ForkId = "Unlock Dleks";
 
-    public const string PluginVersion = "2.1.0";
-    public const string PluginDisplayVersion = "2.1.0";
+    public const string PluginVersion = "2.1.1";
+    public const string PluginDisplayVersion = "2.1.1";
     public const string PluginGuid = "com.tommyxl.unlockdleksehT";
 
     public static Main Instance;
